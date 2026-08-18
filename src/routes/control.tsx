@@ -124,7 +124,7 @@ function ControlPage() {
                   step={1}
                   disabled={locked}
                   value={[s.target.azimuth]}
-                  onValueChange={([v]) => engine.setPanel({ azimuth: v })}
+                  onValueChange={(v) => engine.setPanel({ azimuth: v[0] ?? 0 })}
                 />
               </div>
               <div>
@@ -138,7 +138,7 @@ function ControlPage() {
                   step={1}
                   disabled={locked}
                   value={[s.target.elevation]}
-                  onValueChange={([v]) => engine.setPanel({ elevation: v })}
+                  onValueChange={(v) => engine.setPanel({ elevation: v[0] ?? 0 })}
                 />
               </div>
             </div>
