@@ -1,3 +1,4 @@
+import { ClientTime } from "@/components/solar/ClientTime";
 import { createFileRoute } from "@tanstack/react-router";
 import { Activity, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +31,7 @@ function HealthPage() {
         <div className="min-w-0">
           <h1 className="truncate font-display text-2xl font-bold">System Health</h1>
           <p className="text-sm text-muted-foreground">
-            Last update {new Date(s.lastUpdate).toLocaleTimeString()}
+            Last update <ClientTime at={s.lastUpdate} />
           </p>
         </div>
         <Button size="sm" variant="outline" onClick={() => engine.injectSensorFault()} className="gap-1.5">

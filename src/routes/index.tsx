@@ -1,3 +1,4 @@
+import { ClientTime } from "@/components/solar/ClientTime";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Activity, Compass, Gauge, Sun, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -101,7 +102,7 @@ function Dashboard() {
                 </li>
                 <li className="flex items-center justify-between gap-2">
                   <span className="text-muted-foreground">Last update</span>
-                  <span className="font-mono text-xs">{new Date(s.lastUpdate).toLocaleTimeString()}</span>
+                  <span className="font-mono text-xs"><ClientTime at={s.lastUpdate} /></span>
                 </li>
               </ul>
             </Panel>
@@ -181,7 +182,7 @@ function Dashboard() {
                     <div className="mb-1 flex items-center gap-2">
                       <StatusBadge tone={alertTone[a.level]}>{a.level}</StatusBadge>
                       <span className="font-mono text-[10px] text-muted-foreground">
-                        {new Date(a.at).toLocaleTimeString()}
+                        <ClientTime at={a.at} />
                       </span>
                     </div>
                     <span>{a.message}</span>

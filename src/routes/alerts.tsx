@@ -1,3 +1,4 @@
+import { ClientTime } from "@/components/solar/ClientTime";
 import { createFileRoute } from "@tanstack/react-router";
 import { BellRing, Trash2, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -52,7 +53,7 @@ function AlertsPage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <StatusBadge tone={alertTone[a.level]}>{a.level}</StatusBadge>
                     <span className="font-mono text-[11px] text-muted-foreground">
-                      {new Date(a.at).toLocaleTimeString()}
+                      <ClientTime at={a.at} />
                     </span>
                   </div>
                   <p className="mt-1 text-sm">{a.message}</p>
