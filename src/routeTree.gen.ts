@@ -16,6 +16,7 @@ import { Route as ControlRouteImport } from './routes/control'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as HealthRouteImport } from './routes/health'
 import { Route as SensorsRouteImport } from './routes/sensors'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TrackingRouteImport } from './routes/tracking'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const SensorsRoute = SensorsRouteImport.update({
   path: '/sensors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrackingRoute = TrackingRouteImport.update({
   id: '/tracking',
   path: '/tracking',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
   '/sensors': typeof SensorsRoute
+  '/settings': typeof SettingsRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
   '/sensors': typeof SensorsRoute
+  '/settings': typeof SettingsRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
   '/sensors': typeof SensorsRoute
+  '/settings': typeof SettingsRoute
   '/tracking': typeof TrackingRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/energy'
     | '/health'
     | '/sensors'
+    | '/settings'
     | '/tracking'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/energy'
     | '/health'
     | '/sensors'
+    | '/settings'
     | '/tracking'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/energy'
     | '/health'
     | '/sensors'
+    | '/settings'
     | '/tracking'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   EnergyRoute: typeof EnergyRoute
   HealthRoute: typeof HealthRoute
   SensorsRoute: typeof SensorsRoute
+  SettingsRoute: typeof SettingsRoute
   TrackingRoute: typeof TrackingRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SensorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tracking': {
       id: '/tracking'
       path: '/tracking'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnergyRoute: EnergyRoute,
   HealthRoute: HealthRoute,
   SensorsRoute: SensorsRoute,
+  SettingsRoute: SettingsRoute,
   TrackingRoute: TrackingRoute,
 }
 export const routeTree = rootRouteImport
