@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as ControlRouteImport } from './routes/control'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as HealthRouteImport } from './routes/health'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AlertsRoute = AlertsRouteImport.update({
   id: '/alerts',
   path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchitectureRoute = ArchitectureRouteImport.update({
+  id: '/architecture',
+  path: '/architecture',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ControlRoute = ControlRouteImport.update({
@@ -56,6 +62,7 @@ const TrackingRoute = TrackingRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/architecture': typeof ArchitectureRoute
   '/control': typeof ControlRoute
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/architecture': typeof ArchitectureRoute
   '/control': typeof ControlRoute
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/architecture': typeof ArchitectureRoute
   '/control': typeof ControlRoute
   '/energy': typeof EnergyRoute
   '/health': typeof HealthRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/alerts'
+    | '/architecture'
     | '/control'
     | '/energy'
     | '/health'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/alerts'
+    | '/architecture'
     | '/control'
     | '/energy'
     | '/health'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/alerts'
+    | '/architecture'
     | '/control'
     | '/energy'
     | '/health'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlertsRoute: typeof AlertsRoute
+  ArchitectureRoute: typeof ArchitectureRoute
   ControlRoute: typeof ControlRoute
   EnergyRoute: typeof EnergyRoute
   HealthRoute: typeof HealthRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/alerts'
       fullPath: '/alerts'
       preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/architecture': {
+      id: '/architecture'
+      path: '/architecture'
+      fullPath: '/architecture'
+      preLoaderRoute: typeof ArchitectureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/control': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlertsRoute: AlertsRoute,
+  ArchitectureRoute: ArchitectureRoute,
   ControlRoute: ControlRoute,
   EnergyRoute: EnergyRoute,
   HealthRoute: HealthRoute,
